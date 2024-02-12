@@ -1,7 +1,7 @@
 import { pgTable, serial, text, integer, pgEnum } from "drizzle-orm/pg-core";
 import { teamSchema } from "./team.schema";
 
-export const role = pgEnum('role', ['new_student', 'student', 'admin']);
+export const role = pgEnum('role', ['admin1', 'admin2']);
 
 export const studentSchema = pgTable("user", {
   id: serial("id").primaryKey(),

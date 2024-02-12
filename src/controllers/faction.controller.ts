@@ -6,7 +6,7 @@ import { serviceError, fetchingError } from '../utils/error'
 
 export const getAllFactions = async (req: Request, res: Response) => {
   try {
-    const entities = await service.getAllFactions;
+    const entities = await service.getAllFactions();
     res.status(Code.OK).send(new HttpResponse(Code.OK, "factions reached", entities))
   } catch(error) {
     serviceError(res, error);
@@ -14,14 +14,14 @@ export const getAllFactions = async (req: Request, res: Response) => {
 }
 
 export const getFaction = async (req: Request, res: Response) => {
-  const { id, name } = req.params;
+  const { id } = req.params;
   const idNumber = parseInt(id, 10);
 
   if (isNaN(idNumber)) { fetchingError(res, "ID format not recognized") }
 
   try {
-    await service.getFaction(idNumber);
-    res.status(Code.OK).send(new HttpResponse(Code.OK, "faction reached"));
+    const entitie = await service.getFaction(idNumber);
+    res.status(Code.OK).send(new HttpResponse(Code.OK, "faction reached", entitie));
   } catch (err) {
     serviceError(res, err);
   }
@@ -41,7 +41,7 @@ export const addFaction = async (req: Request, res: Response) => {
 };
 
 export const deleteFaction = async (req: Request, res: Response) => {
-  const { id, name } = req.params;
+  const { id } = req.params;
   const idNumber = parseInt(id, 10);
 
   if (isNaN(idNumber)) { fetchingError(res, "ID format not recognized") }
@@ -105,3 +105,4 @@ export const removePoints = async (req: Request, res: Response) => {
     serviceError(res, err);
   }
 };
+

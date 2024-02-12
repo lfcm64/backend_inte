@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "rootDir": "backend_inte/src", 
+    "rootDir": "./src", 
     "outDir": "./dist",
     "removeComments": false,
     "importsNotUsedAsValues": "remove",
@@ -16,9 +16,7 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "typeRoots": ["backend_inte/src/types"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "typeRoots": ["./src/types"],
   },
-  "include": ["./.eslintrc.js", "backend_inte/src", "lib/try.ts"]
+  "include": ["./.eslintrc.js", "./src", "lib/try.ts"]
 }

@@ -10,7 +10,7 @@ export class HttpResponse {
     private timeStamp: string;
     private httpStatus: string;
 
-    constructor(private statusCode: Code, private message: string, private data?: {}) {
+    constructor(private statusCode: Code, private message: string, private data?: any) {
         this.timeStamp = new Date().toLocaleString();
         this.statusCode = statusCode;
         this.httpStatus = this.getStatus();
