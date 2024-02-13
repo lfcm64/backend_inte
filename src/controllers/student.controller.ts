@@ -12,13 +12,10 @@ export const getAllStudents = async (req: Request, res: Response) => {
 }
 
 export const getStudent = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const idNumber = parseInt(id, 10);
-
-    if (isNaN(idNumber)) { errorResponse(res, {msg: "Bad ID format"}) };
+    const { id } = req.body;
 
   try {
-    const data = await service.getStudent(idNumber);
+    const data = await service.getStudent(id);
     okResponse(res, {data});
   } catch (error) {
     errorResponse(res, {error});
@@ -26,13 +23,10 @@ export const getStudent = async (req: Request, res: Response) => {
 };
 
 export const deleteStudent = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const idNumber = parseInt(id, 10);
-
-  if (isNaN(idNumber)) { errorResponse(res, {msg: "Bad ID format"}) };
+  const { id } = req.body;
 
   try {
-    await service.deleteStudent(idNumber);
+    await service.deleteStudent(id);
     okResponse(res, {msg: "Student deleted"});
   } catch (error) {
     errorResponse(res, {error});
@@ -40,15 +34,10 @@ export const deleteStudent = async (req: Request, res: Response) => {
 };
 
 export const addStudentToTeam = async (req: Request, res: Response) => {
-  const { StudentId, teamId } = req.params;
-  const StudentIdNumber = parseInt(StudentId, 10);
-  const teamIdNumber = parseInt(teamId, 10);
-
-  if (isNaN(StudentIdNumber)) { errorResponse(res, {msg: "Bad ID format"}) };
-  if (isNaN(teamIdNumber)) { errorResponse(res, {msg: "Bad ID format"}) };
+  const { StudentId, teamId } = req.body;
 
   try {
-    await service.addStudentToTeam(StudentIdNumber, teamIdNumber);
+    await service.addStudentToTeam(StudentId, teamId);
     okResponse(res, {msg: "Student modified"});
   } catch (error) {
     errorResponse(res, {error});

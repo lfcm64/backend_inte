@@ -3,6 +3,9 @@ import * as service from '../services/student.service';
 import * as bcrypt from 'bcrypt';
 import { errorResponse, createResponse, okResponse } from '../utils/responses';
 import { sign } from 'jsonwebtoken';
+import dotenv from "dotenv";
+
+dotenv.config()
 
 export const register = async (req: Request, res: Response) => {
     const { first_name, last_name, email, password } = req.body;

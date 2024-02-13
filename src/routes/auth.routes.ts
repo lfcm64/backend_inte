@@ -1,6 +1,6 @@
 import express from 'express';
 import  * as ac  from '../controllers/auth.controller';
-import { registerMiddleware } from '../middlewares/auth.middleware';
+import { registerMiddleware } from '../middlewares/register';
 
 const authRouter = express.Router();
 
