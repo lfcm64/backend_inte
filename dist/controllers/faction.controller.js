@@ -29,7 +29,7 @@ const service = __importStar(require("../services/faction.service"));
 const error_1 = require("../utils/error");
 const getAllFactions = async (req, res) => {
     try {
-        const entities = await service.getAllFactions;
+        const entities = await service.getAllFactions();
         res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "factions reached", entities));
     }
     catch (error) {
@@ -44,8 +44,8 @@ const getFaction = async (req, res) => {
         (0, error_1.fetchingError)(res, "ID format not recognized");
     }
     try {
-        await service.getFaction(idNumber);
-        res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "faction reached"));
+        const entitie = await service.getFaction(idNumber);
+        res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "faction reached", entitie));
     }
     catch (err) {
         (0, error_1.serviceError)(res, err);

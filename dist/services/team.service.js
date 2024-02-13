@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renameTeam = exports.deleteTeam = exports.getTeam = exports.addTeam = exports.getAllTeams = void 0;
+exports.addTeamToFaction = exports.renameTeam = exports.deleteTeam = exports.getTeam = exports.addTeam = exports.getAllTeams = void 0;
 const team_schema_1 = require("../schemas/team.schema");
 const db_1 = require("../database/db");
 const drizzle_orm_1 = require("drizzle-orm");
@@ -27,4 +27,10 @@ const renameTeam = async (name, id) => {
         .where((0, drizzle_orm_1.eq)(team_schema_1.teamSchema.id, id));
 };
 exports.renameTeam = renameTeam;
+const addTeamToFaction = async (teamId, factionId) => {
+    return await db_1.db.update(team_schema_1.teamSchema)
+        .set({ faction: factionId })
+        .where((0, drizzle_orm_1.eq)(team_schema_1.teamSchema.id, teamId));
+};
+exports.addTeamToFaction = addTeamToFaction;
 //# sourceMappingURL=team.service.js.map

@@ -6,7 +6,7 @@ export const getAllTeams = async () => {
     return await db.select().from(teamSchema);
 }
 
-export const addTeam = async (name: string) => {
+export const createTeam = async (name: string) => {
     const newTeam: Team = { name, faction: null };
     return await db.insert(teamSchema).values(newTeam)
 }

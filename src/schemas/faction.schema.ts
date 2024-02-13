@@ -2,7 +2,7 @@ import { integer, pgTable, serial, text, uuid } from "drizzle-orm/pg-core";
 
 export const factionSchema = pgTable('faction', {
     id: serial('id').primaryKey(),
-    name: text('team_name').notNull(),
+    name: text('team_name').notNull().unique(),
     points: integer('points').notNull()
 });
 

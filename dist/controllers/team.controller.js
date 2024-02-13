@@ -23,13 +23,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renameTeam = exports.deleteTeam = exports.addTeam = exports.getTeam = exports.getAllTeams = void 0;
+exports.addTeamToFaction = exports.renameTeam = exports.deleteTeam = exports.addTeam = exports.getTeam = exports.getAllTeams = void 0;
 const response_1 = require("../utils/response");
 const service = __importStar(require("../services/team.service"));
 const error_1 = require("../utils/error");
 const getAllTeams = async (req, res) => {
     try {
-        const entities = await service.getAllTeams;
+        const entities = await service.getAllTeams();
         res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "Teams reached", entities));
     }
     catch (error) {
@@ -44,8 +44,8 @@ const getTeam = async (req, res) => {
         (0, error_1.fetchingError)(res, "ID format not recognized");
     }
     try {
-        await service.getTeam(idNumber);
-        res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "Team reached"));
+        const entitie = await service.getTeam(idNumber);
+        res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "Team reached", entitie));
     }
     catch (err) {
         (0, error_1.serviceError)(res, err);
@@ -95,4 +95,23 @@ const renameTeam = async (req, res) => {
     }
 };
 exports.renameTeam = renameTeam;
+const addTeamToFaction = async (req, res) => {
+    const { teamId, factionId } = req.params;
+    const teamIdNumber = parseInt(teamId, 10);
+    const factionIdNumber = parseInt(factionId, 10);
+    if (isNaN(teamIdNumber)) {
+        (0, error_1.fetchingError)(res, "ID format not recognized");
+    }
+    if (isNaN(factionIdNumber)) {
+        (0, error_1.fetchingError)(res, "ID format not recognized");
+    }
+    try {
+        await service.addTeamToFaction(teamIdNumber, factionIdNumber);
+        res.status(response_1.Code.OK).send(new response_1.HttpResponse(response_1.Code.OK, "Team modified"));
+    }
+    catch (err) {
+        (0, error_1.serviceError)(res, err);
+    }
+};
+exports.addTeamToFaction = addTeamToFaction;
 //# sourceMappingURL=team.controller.js.map

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.studentSchema = exports.role = void 0;
 const pg_core_1 = require("drizzle-orm/pg-core");
 const team_schema_1 = require("./team.schema");
-exports.role = (0, pg_core_1.pgEnum)('role', ['new_student', 'student', 'admin']);
+exports.role = (0, pg_core_1.pgEnum)('role', ['admin1', 'admin2']);
 exports.studentSchema = (0, pg_core_1.pgTable)("user", {
     id: (0, pg_core_1.serial)("id").primaryKey(),
     first_name: (0, pg_core_1.text)("first_name").notNull(),

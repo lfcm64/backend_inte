@@ -29,9 +29,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const tc = __importStar(require("../controllers/team.controller"));
 const teamRouter = express_1.default.Router();
-teamRouter.get('/add/:name', tc.addTeam);
-teamRouter.get('/all', tc.getAllTeams);
-teamRouter.get('get/all', tc.getAllTeams);
-teamRouter.get('/rename/:id/:name', tc.renameTeam);
+teamRouter.post('/:name', tc.addTeam);
+teamRouter.get('', tc.getAllTeams);
+teamRouter.get('/:id', tc.getTeam);
+teamRouter.delete('/:id', tc.deleteTeam);
+teamRouter.post('/rename/:id/:name', tc.renameTeam);
+teamRouter.post('/addtofac/:teamId/:factionId', tc.addTeamToFaction);
 exports.default = teamRouter;
 //# sourceMappingURL=team.routes.js.map

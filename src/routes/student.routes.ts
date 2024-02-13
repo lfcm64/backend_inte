@@ -1,9 +1,12 @@
 import express from 'express';
-//import { getAllUsers, addUser } from '../controllers/user.controllers';
+import  * as sc  from '../controllers/student.controller';
+import { authenticateToken } from '../middlewares/auth.middleware';
 
-const userRouter = express.Router();
+const studentRouter = express.Router();
 
-//userRouter.get('/add/:name', addUser);
-//userRouter.get('/all', getAllUsers);
+studentRouter.get('', authenticateToken, sc.getAllStudents);
+studentRouter.get('/:id', authenticateToken, sc.getStudent);
+studentRouter.delete('/:id', authenticateToken, sc.deleteStudent);
+//studentRouter.post('/addtoteam/:StudentId/:factionId', sc.addStudentToTeam);
 
-export default userRouter;
+export default studentRouter;

@@ -3,7 +3,7 @@ import { factionSchema } from "./faction.schema";
 
 export const teamSchema = pgTable('team', {
     id: serial('id').primaryKey(),
-    name: text('team_name').notNull(),
+    name: text('team_name').notNull().unique(),
     faction: integer('city_id').references(() => factionSchema.id)
 });
 

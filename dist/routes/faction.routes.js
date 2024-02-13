@@ -26,15 +26,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const fc = __importStar(require("../controllers/faction.controller"));
 const factionRouter = express_1.default.Router();
-factionRouter.get('/add/:name', fc.addFaction);
-factionRouter.get('/all', fc.getAllFactions);
-factionRouter.get('get/all', fc.getAllFactions);
-factionRouter.get('/rename/:id/:name', fc.renameFaction);
-factionRouter.get('/addp/:id/:points', fc.addPoints);
-factionRouter.get('/rmp/:id/:points', fc.removePoints);
+factionRouter.post('/:name', fc.addFaction);
+factionRouter.get('', fc.getAllFactions);
+factionRouter.get('/:id', fc.getFaction);
+factionRouter.delete('/:id', fc.deleteFaction);
+factionRouter.post('/rename/:id/:name', fc.renameFaction);
+factionRouter.post('/add/:id/:points', fc.addPoints);
+factionRouter.post('/rmv/:id/:points', fc.removePoints);
 exports.default = factionRouter;
 //# sourceMappingURL=faction.routes.js.map

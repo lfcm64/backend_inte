@@ -6,7 +6,7 @@ export const getAllFactions = async () => {
     return await db.select().from(factionSchema);
 }
 
-export const addFaction = async (name: string) => {
+export const createFaction = async (name: string) => {
     const newFaction: Faction = { name, points: 0 };
     return await db.insert(factionSchema).values(newFaction)
 }

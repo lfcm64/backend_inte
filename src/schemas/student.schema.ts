@@ -7,8 +7,8 @@ export const studentSchema = pgTable("user", {
   id: serial("id").primaryKey(),
   first_name: text("first_name").notNull(),
   last_name: text("last_name").notNull(),
-  email: text("email").notNull(),
-  password: text("password"),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
   role: role('role'),
   team: integer('team').references(() => teamSchema.id)
 });
