@@ -4,11 +4,11 @@ import  * as tc  from '../controllers/team.controller';
 const teamRouter = express.Router();
 
 teamRouter.post('/:name', tc.createTeam);
-teamRouter.get('', tc.getAllTeams);
-teamRouter.get('/:id', tc.getTeam);
-teamRouter.delete('/:id', tc.deleteTeam);
-teamRouter.post('/rename/:id/:name', tc.renameTeam);
-teamRouter.post('/addtofac/:teamId/:factionId', tc.addTeamToFaction);
+teamRouter.get('/all', tc.getAllTeams);
+teamRouter.get('', tc.getTeam);
+teamRouter.delete('', tc.deleteTeam);
+teamRouter.post('/rename', tc.renameTeam);
+teamRouter.post('/addtofac', tc.addTeamToFaction);
 
 
 export default teamRouter;

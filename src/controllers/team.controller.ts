@@ -13,13 +13,10 @@ export const getAllTeams = async (req: Request, res: Response) => {
 }
 
 export const getTeam = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const idNumber = parseInt(id, 10);
-
-  if (isNaN(idNumber)) { errorResponse(res, { msg: "Bad ID format" }) };
+  const { id } = req.body;
 
   try {
-    const data = await service.getTeam(idNumber);
+    const data = await service.getTeam(id);
     okResponse(res, { data });
   } catch (error) {
     errorResponse(res, { error });
@@ -27,7 +24,7 @@ export const getTeam = async (req: Request, res: Response) => {
 };
 
 export const createTeam = async (req: Request, res: Response) => {
-  const { name } = req.params;
+  const { name } = req.body;
 
   name ?? errorResponse(res, { msg: "No name" });
 
@@ -40,13 +37,10 @@ export const createTeam = async (req: Request, res: Response) => {
 };
 
 export const deleteTeam = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const idNumber = parseInt(id, 10);
-
-  if (isNaN(idNumber)) { errorResponse(res, { msg: "Bad ID format" }) };
+  const { id } = req.body;
 
   try {
-    await service.deleteTeam(idNumber);
+    await service.deleteTeam(id);
     okResponse(res, { msg: "Team deleted" });
   } catch (error) {
     errorResponse(res, { error });
@@ -54,15 +48,12 @@ export const deleteTeam = async (req: Request, res: Response) => {
 };
 
 export const renameTeam = async (req: Request, res: Response) => {
-  const { id, name } = req.params;
-  const idNumber = parseInt(id, 10);
+  const { id, name } = req.body;
 
   name ?? errorResponse(res, { msg: "No name" });
 
-  if (isNaN(idNumber)) { errorResponse(res, { msg: "Bad ID format" }) };
-
   try {
-    await service.renameTeam(name, idNumber);
+    await service.renameTeam(name, id);
     okResponse(res, { msg: "Team renamed" });
   } catch (error) {
     errorResponse(res, { error });
@@ -70,15 +61,10 @@ export const renameTeam = async (req: Request, res: Response) => {
 };
 
 export const addTeamToFaction = async (req: Request, res: Response) => {
-  const { teamId, factionId } = req.params;
-  const teamIdNumber = parseInt(teamId, 10);
-  const factionIdNumber = parseInt(factionId, 10);
-
-  if (isNaN(teamIdNumber)) { errorResponse(res, { msg: "Bad ID format" }) };
-  if (isNaN(factionIdNumber)) { errorResponse(res, { msg: "Bad ID format" }) };
+  const { teamId, factionId } = req.body;
 
   try {
-    await service.addTeamToFaction(teamIdNumber, factionIdNumber);
+    await service.addTeamToFaction(teamId, factionId);
     okResponse(res, { msg: "Team modified" });
   } catch (error) {
     errorResponse(res, { error });
