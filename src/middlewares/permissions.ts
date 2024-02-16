@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify, JsonWebTokenError } from 'jsonwebtoken';
+import { RoleType } from '../schemas/user.schema';
 import { jwtSecret } from '../utils/secret';
 import { errorResponse } from '../utils/responses';
 
@@ -21,7 +22,7 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     try {
         let decodedToken = decodeToken(req, res);
 
-        if (decodedToken.role === 'NewStudent' || decodedToken.role === 'Student') {
+        if (decodedToken.role !== RoleType.NewStudent && decodedToken.role !== RoleType.Student) {
             next();
         } else {
             errorResponse(res, { msg: 'Forbidden: Insufficient permissions' });
