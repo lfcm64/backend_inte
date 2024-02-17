@@ -20,7 +20,7 @@ export const decodeToken = (req: Request, res: Response): any => {
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     try {
-        let decodedToken = decodeToken(req, res);
+        const decodedToken = decodeToken(req, res);
 
         if (decodedToken.role !== RoleType.NewStudent && decodedToken.role !== RoleType.Student) {
             next();
