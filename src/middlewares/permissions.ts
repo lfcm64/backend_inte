@@ -31,7 +31,7 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
         if (error instanceof JsonWebTokenError) {
             return errorResponse(res, { msg: 'Unauthorized: Invalid token' });
         } else {
-            return errorResponse(res, { msg: 'Internal Server Error' });
+            return errorResponse(res, { msg: 'Unauthorized: Missing token' });
         }
     }
 };
